@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f4ef" />
+    <meta name="description" content="เรียนรู้วิธี Newton–Raphson ผ่านภาพประกอบและตัวอย่างการคำนวณทีละขั้น" />
+    <title>Newton–Raphson</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="กลับไปหน้าแรก">
+        <span class="brand-mark" aria-hidden="true">N<span>R</span></span>
+        <span class="brand-copy">NUMERICAL<br /><strong>METHODS</strong></span>
+      </a>
+      <nav class="main-nav" aria-label="เมนูหลัก">
+        <a class="nav-link active" href="#home">หน้าแรก</a>
+        <a class="nav-link" href="#concept">แนวคิด</a>
+        <a class="nav-link" href="#preview">ตัวอย่าง</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero page-shell" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> NUMERICAL METHODS · ROOT FINDING</div>
+          <h1>NEWTON<br />- <span>RAPHSON</span></h1>
+          <p class="hero-description">ทำความรู้จัก Newton–Raphson วิธีประมาณรากของสมการที่เปลี่ยนความชันให้กลายเป็นคำตอบ</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#concept">เริ่มทำความเข้าใจ <span aria-hidden="true">→</span></a>
+            <a class="text-link" href="#preview"><span class="play-icon" aria-hidden="true">▶</span> ดูตัวอย่างการคำนวณ</a>
+          </div>
+          <div class="hero-meta"><span class="meta-line"></span><span>บทเรียนที่ 01</span><span class="meta-separator">/</span><span>พื้นฐานการหาราก</span></div>
+        </div>
+
+        <div class="hero-visual" aria-label="ภาพแสดงเส้นสัมผัสที่เคลื่อนเข้าใกล้รากของกราฟ">
+          <div class="visual-topline"><span>NEWTON’S METHOD</span><span class="live-label"><i></i> ITERATIVE</span></div>
+          <svg class="graph" viewBox="0 0 600 390" role="img" aria-labelledby="graph-title graph-desc">
+            <title id="graph-title">กราฟตัวอย่างการประมาณราก</title>
+            <desc id="graph-desc">เส้นโค้งและเส้นสัมผัสแสดงการประมาณค่าจาก x ศูนย์ไปยังรากของสมการ</desc>
+            <defs>
+              <pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse">
+                <path d="M 38 0 L 0 0 0 38" fill="none" stroke="#dce2da" stroke-width="1" />
+              </pattern>
+              <linearGradient id="curveGlow" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#91ac79" />
+                <stop offset="1" stop-color="#55754d" />
+              </linearGradient>
+            </defs>
+            <rect x="40" y="24" width="520" height="310" rx="8" fill="url(#grid)" />
+            <path class="axis" d="M50 263 H548 M202 40 V325" />
+            <path class="curve" d="M54 104 C113 130 154 212 203 263 C260 324 322 290 363 222 C408 148 462 100 548 67" />
+            <path class="tangent tangent-one" d="M93 102 L339 323" />
+            <path class="tangent tangent-two" d="M151 184 L371 294" />
+            <path class="tangent tangent-three" d="M190 248 L280 264" />
+            <circle class="point point-one" cx="133" cy="138" r="6" />
+            <circle class="point point-two" cx="245" cy="263" r="6" />
+            <circle class="point point-three" cx="273" cy="263" r="6" />
+            <circle class="root-point" cx="273" cy="263" r="10" />
+            <text class="graph-label" x="104" y="126">x₀</text>
+            <text class="graph-label" x="219" y="250">x₁</text>
+            <text class="graph-label" x="284" y="249">ราก</text>
+            <text class="axis-label" x="538" y="285">x</text>
+            <text class="axis-label" x="184" y="47">f(x)</text>
+          </svg>
+          <div class="formula-chip"><span class="formula-icon">ƒ′</span><span>x<sub>n+1</sub> = x<sub>n</sub> − <span class="fraction"><span>f(x<sub>n</sub>)</span><span>f′(x<sub>n</sub>)</span></span></span></div>
+          <div class="visual-caption"><span>01 — APPROXIMATION</span><span>ค่าเริ่มต้น → รากของสมการ</span></div>
+        </div>
+        <div class="hero-index" aria-hidden="true">01</div>
+      </section>
+
+      <section class="intro-strip" id="concept">
+        <div class="page-shell intro-grid">
+          <div class="section-kicker"><span>01</span><span class="kicker-rule"></span><span>THE IDEA</span></div>
+          <div class="intro-text"><h2>เดาค่าเริ่มต้น<br />แล้วปรับให้ดีขึ้น</h2></div>
+          <div class="intro-detail"><p>เริ่มจากค่าประมาณหนึ่งค่า แล้วใช้ความชันของกราฟคำนวณค่าถัดไป ทำซ้ำจนได้คำตอบที่ใกล้รากมากพอ</p><a href="#preview" class="arrow-link">ดูการทำงาน <span>↘</span></a></div>
+        </div>
+      </section>
+
+      <section class="preview-section page-shell" id="preview">
+        <div class="section-heading">
+          <div><div class="eyebrow"><span class="eyebrow-dot"></span> A QUICK PREVIEW</div><h2>หนึ่งสมการ<br /><span>สามรอบการคำนวณ</span></h2></div>
+          <p>ลองประมาณรากของ <strong id="equation-label">f(x) = x² − 2</strong><br />กำหนดสมการและค่าเริ่มต้น x₀ ได้เอง</p>
+        </div>
+        <form id="calculator-form" class="calculator-controls">
+          <label for="equation-input">สมการ f(x)</label>
+          <input id="equation-input" name="equation" type="text" placeholder="เว้นว่างเพื่อใช้ x^2 - 2" autocomplete="off" spellcheck="false" aria-describedby="equation-help" />
+          <label for="initial-guess">ค่าเริ่มต้น x₀</label>
+          <input id="initial-guess" name="initialGuess" type="number" step="any" value="1.5" inputmode="decimal" required />
+          <button class="button button-primary" type="submit">คำนวณ <span aria-hidden="true">→</span></button>
+          <p class="equation-help" id="equation-help">พิมพ์ f(x) หรือสมการ เช่น x^2 = 2 · รองรับ + − * / ^ วงเล็บ และ sin, cos, tan, sqrt, ln, log, exp · เว้นว่างใช้ x² − 2</p>
+          <p class="calculator-message" id="calculator-message" aria-live="polite"></p>
+        </form>
+        <div class="calculation-card">
+          <div class="calc-heading"><span>ITERATION</span><span>ค่าประมาณ xₙ</span><span>ความคลาดเคลื่อน</span><span class="calc-state" id="calc-state">CONVERGING <i></i></span></div>
+          <div id="iteration-rows" class="iteration-rows" aria-live="polite"></div>
+          <div class="calc-footer"><span><span class="legend-dot"></span> ค่าประมาณราก</span><span>สูตรที่ใช้: xₙ₊₁ = xₙ − f(xₙ) / f′(xₙ)</span></div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer page-shell"><a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">N<span>R</span></span><span class="brand-copy">NUMERICAL<br /><strong>METHODS</strong></span></a><span>เรียนรู้แนวคิดเชิงตัวเลข ด้วยการลงมือคิดและลงมือสร้าง</span><a href="#home" class="back-top">กลับขึ้นด้านบน ↑</a></footer>
+  </body>
+</html>
