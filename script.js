@@ -258,7 +258,7 @@ const message = document.querySelector('#calculator-message');
 const calculationState = document.querySelector('#calc-state');
 const defaultEquation = 'x^2 - 2';
 const formatNumber = (number) => number.toFixed(8);
-const formatError = (number) => number.toExponential(2);
+const formatError = (number) => number.toFixed(5);
 
 function showError(text) {
   rowsContainer.innerHTML = '';
